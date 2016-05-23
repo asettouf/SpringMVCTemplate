@@ -1,6 +1,7 @@
 package ado.tests;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,10 +29,10 @@ public class DBTests {
 			conn = DriverManager.getConnection(URL, USER, PASSWD);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			fail("SQL Exception");
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			fail("Driver class not found");
 			e.printStackTrace();
 		}
 		assertTrue(conn != null);
@@ -80,11 +81,10 @@ public class DBTests {
 			stmt.execute(sql);
 			showData("test");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			fail("SQL Exception");
 			e.printStackTrace();
 		}
 
-		assertTrue(true);
 	}
 
 	// @Test
@@ -95,7 +95,7 @@ public class DBTests {
 			stmt.execute(sql);
 			showData("test");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			fail("SQL Exception");
 			e.printStackTrace();
 		}
 	}
@@ -105,7 +105,7 @@ public class DBTests {
 		try {
 			showData("test");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			fail("SQL Exception");
 			e.printStackTrace();
 		}
 	}
@@ -115,7 +115,7 @@ public class DBTests {
 		try {
 			conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			fail("SQL Exception");
 			e.printStackTrace();
 		}
 	}
