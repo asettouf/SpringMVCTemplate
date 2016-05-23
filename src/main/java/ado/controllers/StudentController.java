@@ -6,7 +6,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ado.classes.Student;
@@ -19,8 +18,8 @@ public class StudentController {
 	private StudentDao studentDao;
 	
 	@RequestMapping(value="/student", method=RequestMethod.GET)
-	public ModelAndView student(@RequestParam(value="name", required=true) String name){
-		return new ModelAndView("student", "command", studentDao.getStudent(name));
+	public ModelAndView student(){
+		return new ModelAndView("student", "command", new Student());
 	}
 
 	@RequestMapping(value = "/addstudent", method=RequestMethod.POST)
