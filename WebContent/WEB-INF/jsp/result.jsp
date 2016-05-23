@@ -8,13 +8,14 @@
 <body>
 
 <h2>Submitted Student Information</h2>
+	<h3>Successful save in the database</h3>
    <table>
     <tr>
-        <td>Name</td>
+        <td>Name: </td>
         <td>${name}</td>
     </tr>
     <tr>
-        <td>Age</td>
+        <td>Age: </td>
         <td>${age}</td>
     </tr>
     <tr>

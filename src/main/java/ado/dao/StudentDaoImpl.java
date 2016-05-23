@@ -1,5 +1,6 @@
 package ado.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,10 +17,13 @@ public class StudentDaoImpl implements StudentDao {
 	}
 	@Override
 	public Student getStudent(String name) {
+		
 		Session session = sFactory.getCurrentSession();
 		Student student = null;
 		session.beginTransaction();
-		student = (Student) session.get(Student.class, name);
+		Query q = session.createQuery("from Student where name= :name");
+		q.setParameter("name", name);
+		student = (Student) q.uniqueResult(); 
 		
 		return student;
 	}

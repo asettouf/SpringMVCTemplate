@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ado.classes.Student;
@@ -21,7 +22,22 @@ public class StudentController {
 	public ModelAndView student(){
 		return new ModelAndView("student", "command", new Student());
 	}
-
+	
+	@RequestMapping(value="/getstudent", method=RequestMethod.GET)
+	public ModelAndView getStudent(){
+		return new ModelAndView("getstudent", "command", new Student());
+	}
+	
+	@RequestMapping(value = "/getstudent", method=RequestMethod.POST)
+	public String getStudentFromDB(@RequestParam("name") String name, ModelMap model){
+		Student stud = studentDao.getStudent(name);
+		
+		model.addAttribute("name", stud.getName());
+		model.addAttribute("age", stud.getAge());
+		model.addAttribute("id", stud.getId());
+		
+		return "result";
+	}
 	@RequestMapping(value = "/addstudent", method=RequestMethod.POST)
 	public String addStudent(@ModelAttribute("SpringWeb") Student student, ModelMap model){
 		model.addAttribute("name", student.getName());
